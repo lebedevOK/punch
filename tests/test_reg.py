@@ -13,8 +13,11 @@ def register_user():
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
     driver.get("https://punch.bet/")
 
+    # Сlose panel Get
+    WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "body.vsc-initialized:nth-child(2) section.container div.container__body:nth-child(3) section.body div.body__content div.bottomNotificationsContainer___19e2F section.container___1TjXk > i.icomoon-circle-xmark-solid.white___Nq6he.closeBtn___2sUIi"))).click()
+
     # Accept cookies
-    WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, 'CybotCookiebotDialogBodyButtonAccept'))).click()
+    WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CLASS_NAME, 'button_primary___35en0'))).click()
 
     # Select language
     driver.find_element(By.XPATH, "//span[contains(text(),'Русский')]").click()
