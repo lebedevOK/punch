@@ -4,8 +4,9 @@ from datetime import datetime
 def telefon_rub():
     """
     Функция генерирует номер телефона по маске "+7xxx-xxx-xx-xx", где "x" - случайное число от 0 до 9.
+    +7 не входит в выдачу
     """
-    return "+7" + "".join(random.choice("0123456789") for _ in range(10))
+    return "".join(random.choice("0123456789") for _ in range(10))
 
 def email_gen():
     """
