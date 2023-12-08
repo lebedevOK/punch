@@ -28,22 +28,21 @@ class TestRegistration:
 
         # Wait for page to refresh and close additional dialogs
         time.sleep(5)
-        driver.find_element(By.XPATH, "//button[contains(text(),'Подписаться')]").click()
-        driver.find_element(By.XPATH, "//button[contains(text(),'Хочешь получать больше бонусов?')]").click()
+        driver.find_element(*RegistrationPageLocators.SUBSCRIBE_BUTTON).click()
+        driver.find_element(*RegistrationPageLocators.BONUS_BUTTON).click()
 
         # Check for profile element
         assert "Профиль" in driver.page_source
 
         # Click on profile and check personal data
-        driver.find_element(By.XPATH, "//a[contains(text(),'Профиль')]").click()
-        game_account = driver.find_element(By.XPATH, "//span[contains(text(),'Игровой счет')]").text
-        assert game_account.isnumeric()
-        assert "RUB" in driver.page_source
-        #assert "79994252469" in driver.page_source
+        driver.find_element(*RegistrationPageLocators.PROFILE_BUTTON).click()
+        game_account = driver.find_element(*RegistrationPageLocators.GAME_ACCOUNT).text
+        assert game_account.isnumeric(), f"Значение 'Игровой счет' - '{game_account}', не является числовым."
+        assert driver.find_element(*RegistrationPageLocators.CURRENCY_LOCATOR).text == "RUB", "Значение элемента не соответствует ожидаемому."
 
         # Write credentials to file
         with open("users.txt", "a") as file:
-            file.write(f"Phone: +79994252469, Game account: {game_account}, Password: 111111Aa\n")
+            file.write(game_account, "111111Aa")
 
         # Close the browser
         driver.quit()

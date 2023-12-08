@@ -15,3 +15,4 @@ class RegistrationPageLocators:
     BONUS_BUTTON = (By.XPATH, "//button[contains(text(),'Хочешь получать больше бонусов?')]")
     PROFILE_BUTTON = (By.XPATH, "//a[contains(text(),'Профиль')]")
     GAME_ACCOUNT = (By.XPATH, "//span[contains(text(),'Игровой счет')]")
+    CURRENCY_LOCATOR = (By.XPATH, "//span[@class='user-profile-data__props-value']")
