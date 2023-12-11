@@ -14,11 +14,29 @@ from utils.utils import telefon_rub
 class TestRegistration:
     def test_register_user(self):
         # Setup webdriver
-        driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
-        driver.get("https://punch.bet/signup")
+        # Открываем браузер в мобильном разрешении (экран 360*740 от Samsung Galaxy S8+)
+        mobile_emulation = {"deviceName": "Samsung Galaxy S8+"}
+        chrome_options = webdriver.ChromeOptions()
+        chrome_options.add_experimental_option("mobileEmulation", mobile_emulation)
+        driver = webdriver.Chrome(options=chrome_options)
+        driver.get("https://m.punch.bet/")
+
+        # Принять куки - нажать на кнопку "Принять"
+        driver.find_element(*MainPageLocators.COOKIE_ACCEPT_BUTTON).click()
+
+        # Нажать "Регистрация"
+        driver.find_element(*MainPageLocators.SIGNUP_BUTTON).click()
 
         # Wait for page to load
         WebDriverWait(driver, 10).until(EC.visibility_of_element_located(MainPageLocators.SIGNUP_PAGE))
+
+        # Выбираем страну "Россия"
+        driver.find_element(*RegistrationPageLocators.COUNTRY_SELECT).click()
+        driver.find_element(By.XPATH, "//*[@id='country-list']/li[text()='Россия']").click()
+
+        # Выбираем валюту "RUB"
+        driver.find_element(*RegistrationPageLocators.CURRENCY_SELECT).click()
+        driver.find_element(By.XPATH, "//*[@id='currency-list']/li[text()='RUB']").click()
 
         # Fill the form
         driver.find_element(*RegistrationPageLocators.PHONE_FIELD).send_keys(telefon_rub())
