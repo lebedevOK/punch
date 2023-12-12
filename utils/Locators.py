@@ -7,7 +7,11 @@ class MainPageLocators:
     LIVE_BUTTON = (By.XPATH, "/html[1]/body[1]/div[1]/main[1]/section[1]/div[2]/section[1]/aside[1]/nav[1]/a[2]")
     SIGNUP_PAGE = (By.XPATH, "/html[1]/body[1]/div[1]/main[1]/section[1]/div[2]/section[1]/div[1]/section[1]/div[1]/h1[1]")
     SIGNUP_BUTTON = (By.CSS_SELECTOR, "a.container__auth-buttons_item.container__auth-buttons_item-signup")
-
+    MAIN_PAGE = (By.CSS_SELECTOR, ".main-menu-item.active")
+    SPORTS_BUTTON = (By.CSS_SELECTOR, ".main-menu-item:nth-child(2)")
+    CASINO_BUTTON = (By.CSS_SELECTOR, ".main-menu-item:nth-child(4)")
+    MYBETS_BUTTON = (By.CSS_SELECTOR, ".main-menu-item:nth-child(3)")
+    MENU_BUTTON = (By.CSS_SELECTOR, ".hamburger-menu")
 
 class RegistrationPageLocators:
     CURRENCY_SELECT = (By.XPATH, "//div[@class='select__placeholder']")
